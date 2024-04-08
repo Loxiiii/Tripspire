@@ -9,7 +9,7 @@ const Trip = async () => {
   const {
     data: { user },
   } = await supabase.auth.getUser()
-  
+  console.log('The user is: ', user)
   if (user) {
     let profile = await getProfileById(user.id)
     let avatarURL = getAvatarUrl(profile.data.avatar_url)
@@ -17,7 +17,7 @@ const Trip = async () => {
       <div className="">
         <HomeHeader avatar={avatarURL}/>
         <div className='h-screen flex justify-center items-center'>
-          <CreateTripForm />
+          <CreateTripForm user={user}/>
         </div>
       </div>
     )
